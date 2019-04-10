@@ -1,0 +1,31 @@
+<project name="19-Abgabe02-Pollanz-Ozim" default="jar">
+	<target name="clean">
+		<delete dir="build"/>
+		<delete dir="output"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar"/>
+		<jar destfile="build/jar/Main.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="at.fhj.iit.Main"/>
+			</manifest>
+		</jar>
+	</target>
+
+
+	<target name="run" depends="jar">
+		<mkdir dir="output"/>
+		<echo message="Attempting to run!"/>
+		<java jar="build/jar/Main.jar" output="output/output.txt" fork="true">
+			<arg line="Everyone"/>
+		</java>
+	</target>
+	
+</project>
+	
